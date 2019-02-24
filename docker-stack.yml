@@ -1,0 +1,27 @@
+version: "3.5"
+
+services:
+  collabora:
+    image: styliteag/collabora-code:latest
+    env_file: ./collabora.env
+    cap_add:
+      - MKNOD
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f -k https://localhost:9980 && echo 'OK'"]
+      interval: 2m
+      timeout: 10s
+      retries: 5
+      start_period: 90s
+    deploy:
+      replicas: 2
+      #mode: global
+      endpoint_mode: dnsrr # or vip
+      restart_policy:
+        condition: on-failure
+        delay: 1s
+        max_attempts: 5
+        window: 12s
+      update_config:
+        parallelism: 1
+        delay: 120s
+        failure_action: pause
