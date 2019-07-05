@@ -1,4 +1,4 @@
-FROM collabora/code
+FROM collabora/code:latest
 LABEL maintainer="Wim Bonis wb@stylite.de"
 
 RUN apt-get update \
