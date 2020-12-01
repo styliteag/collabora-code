@@ -12,7 +12,7 @@ RUN apt-get update \
 
 # switch back to lool user
 #USER lool
-USER 101
+USER 104
 
 # Dont Show Welcome Screen
 RUN perl -pi -e "s/welcome screen (.*)>.*<\/enable>/welcome screen \1>false<\/enable>/" /etc/loolwsd/loolwsd.xml
